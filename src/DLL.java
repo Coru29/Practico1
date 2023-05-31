@@ -1,14 +1,14 @@
 public class DLL<T extends  Comparable<T>> implements Lista<T> {
 
-    Node<T> head;
+    NodeLinkedList<T> head;
 
 
     @Override
     public void add(T value) {
-        Node<T> nuevoNodo = new Node<>();
+        NodeLinkedList<T> nuevoNodo = new NodeLinkedList<>();
         nuevoNodo.value = value;
 
-        Node<T> last = head;
+        NodeLinkedList<T> last = head;
         nuevoNodo.next = null; //xq lo voy a agregar al final
 
         if(head == null){ //en caso q la lista este vacia
@@ -26,14 +26,14 @@ public class DLL<T extends  Comparable<T>> implements Lista<T> {
 
     @Override
     public void remove(int position) {
-        Node<T> tempNode = head;
+        NodeLinkedList<T> tempNodeLinkedList = head;
 
         for (int i = 0; i < position; i++) {
-            tempNode = tempNode.next;
+            tempNodeLinkedList = tempNodeLinkedList.next;
         }
-        tempNode.next.prev = tempNode.prev;
+        tempNodeLinkedList.next.prev = tempNodeLinkedList.prev;
 
-        tempNode.prev.next = tempNode.next;
+        tempNodeLinkedList.prev.next = tempNodeLinkedList.next;
 
     }
 
@@ -49,7 +49,7 @@ public class DLL<T extends  Comparable<T>> implements Lista<T> {
 
     @Override
     public void addFirst(T value) {
-        Node<T> nuevoNodo = new Node<>();
+        NodeLinkedList<T> nuevoNodo = new NodeLinkedList<>();
         nuevoNodo.value = value;
 
         // el prev es null xq este va a ser el primero
@@ -66,11 +66,11 @@ public class DLL<T extends  Comparable<T>> implements Lista<T> {
 
     @Override
     public void addAt(T value, int position) {
-        Node<T> nuevoNodo = new Node<>();
+        NodeLinkedList<T> nuevoNodo = new NodeLinkedList<>();
         nuevoNodo.value = value;
         nuevoNodo.next = null;
 
-        Node tempNode = head;
+        NodeLinkedList tempNodeLinkedList = head;
 
         //en caso de q la poscicion sea 0
         if(position == 0){
@@ -78,12 +78,12 @@ public class DLL<T extends  Comparable<T>> implements Lista<T> {
 
         }else {
             for (int i = 0; i < position - 1; i++) {
-                tempNode = tempNode.next;
+                tempNodeLinkedList = tempNodeLinkedList.next;
             }
-            nuevoNodo.next = tempNode.next;
-            tempNode.next = nuevoNodo;
+            nuevoNodo.next = tempNodeLinkedList.next;
+            tempNodeLinkedList.next = nuevoNodo;
 
-            nuevoNodo.prev = tempNode;
+            nuevoNodo.prev = tempNodeLinkedList;
             nuevoNodo.next.prev = nuevoNodo;
         }
     }
@@ -95,13 +95,13 @@ public class DLL<T extends  Comparable<T>> implements Lista<T> {
 
     @Override
     public void imprimir() {
-        Node<T> tempNode = head;
-        Node<T> last = null;
+        NodeLinkedList<T> tempNodeLinkedList = head;
+        NodeLinkedList<T> last = null;
 
-        while (tempNode != null){
-            System.out.print(tempNode.value + " --> ");
-            last = tempNode;
-            tempNode = tempNode.next;
+        while (tempNodeLinkedList != null){
+            System.out.print(tempNodeLinkedList.value + " --> ");
+            last = tempNodeLinkedList;
+            tempNodeLinkedList = tempNodeLinkedList.next;
         }
         System.out.print("final NULL");
 
