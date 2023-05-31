@@ -1,13 +1,13 @@
 
 public class LL<T extends  Comparable<T>> implements Lista<T>{
 
-    Node<T> head;
+    NodeLinkedList<T> head;
 
 
     @Override
     public void add(T value) {
 
-        Node<T> nuevoNodo = new Node<>();
+        NodeLinkedList<T> nuevoNodo = new NodeLinkedList<>();
         nuevoNodo.value = value;
 
         //si la lista esta vacia
@@ -18,57 +18,57 @@ public class LL<T extends  Comparable<T>> implements Lista<T>{
         //si la lista no esta vacia
         else{
             //mientras que no este parado en el ultimo sigo avanzando
-            Node<T> tempNode = head;
-            while (tempNode.next != null){
-                tempNode = tempNode.next;
+            NodeLinkedList<T> tempNodeLinkedList = head;
+            while (tempNodeLinkedList.next != null){
+                tempNodeLinkedList = tempNodeLinkedList.next;
             }
             //una vez ya estoy en el ulimo, en el next pongo el q quiero poner
-            tempNode.next = nuevoNodo;
+            tempNodeLinkedList.next = nuevoNodo;
         }
 
     }
 
     @Override
     public void remove(int position) {
-        Node<T> tempNode = head;
+        NodeLinkedList<T> tempNodeLinkedList = head;
 
         //recorro la lista y me paro en el anterior al que quiero eliminar
         for(int i = 0; i < position-1; i++){
-            tempNode = tempNode.next;
+            tempNodeLinkedList = tempNodeLinkedList.next;
         }
         //el puntero del anterior pasa a apunutar al proximo del q quiero elinimar, entonces lo pasa de largo
-        tempNode.next = tempNode.next.next;
+        tempNodeLinkedList.next = tempNodeLinkedList.next.next;
 
     }
 
     @Override
     public void get(int position) {
-        Node<T> tempNode = head;
+        NodeLinkedList<T> tempNodeLinkedList = head;
 
         //recorro la lista y me paro en el anterior al que quiero eliminar
         for(int i = 0; i != position; i++){
-            tempNode = tempNode.next;
+            tempNodeLinkedList = tempNodeLinkedList.next;
         }
-        System.out.println("en el indice " +position+ " esta el valor " +tempNode.value);
+        System.out.println("en el indice " +position+ " esta el valor " + tempNodeLinkedList.value);
     }
 
     @Override
     public void find(T value){
-        Node<T> tempNode = head;
+        NodeLinkedList<T> tempNodeLinkedList = head;
 
-        if (tempNode.value == value) System.out.println("el valor "+value +" es el head!");
+        if (tempNodeLinkedList.value == value) System.out.println("el valor "+value +" es el head!");
 
         else{
             int i = 0;
             boolean esta = false;
-            while (tempNode.next != null){
+            while (tempNodeLinkedList.next != null){
 
-                if (tempNode.value == value){
+                if (tempNodeLinkedList.value == value){
                     System.out.println("el valor " +value+ " esta en la posicion " + i);
                     esta = true;
                     break;
                 }else{
-                    tempNode = tempNode.next;
+                    tempNodeLinkedList = tempNodeLinkedList.next;
                     i++;
                 }
             }
@@ -81,7 +81,7 @@ public class LL<T extends  Comparable<T>> implements Lista<T>{
 
     @Override
     public void addFirst(T value) {
-        Node<T> nuevoNodo = new Node<>();
+        NodeLinkedList<T> nuevoNodo = new NodeLinkedList<>();
         nuevoNodo.value = value;
 
         nuevoNodo.next = head;
@@ -90,11 +90,11 @@ public class LL<T extends  Comparable<T>> implements Lista<T>{
 
     @Override
     public void addAt(T value, int position) {
-        Node<T> nuevoNodo = new Node<>();
+        NodeLinkedList<T> nuevoNodo = new NodeLinkedList<>();
         nuevoNodo.value = value;
         nuevoNodo.next = null;
 
-        Node<T> tempNode = head;
+        NodeLinkedList<T> tempNodeLinkedList = head;
 
         //en caso de q la poscicion sea 0
         if(position == 0){
@@ -102,10 +102,10 @@ public class LL<T extends  Comparable<T>> implements Lista<T>{
 
         }else{
             for(int i = 0; i < position-1; i++){
-                tempNode = tempNode.next;
+                tempNodeLinkedList = tempNodeLinkedList.next;
             }
-            nuevoNodo.next = tempNode.next;
-            tempNode.next = nuevoNodo;
+            nuevoNodo.next = tempNodeLinkedList.next;
+            tempNodeLinkedList.next = nuevoNodo;
         }
 
     }
@@ -136,13 +136,13 @@ public class LL<T extends  Comparable<T>> implements Lista<T>{
     @Override
     public void imprimir() {
 
-        Node<T> temporaryNode = head;
+        NodeLinkedList<T> temporaryNodeLinkedList = head;
 
-        while (temporaryNode.next != null){
-            System.out.print(temporaryNode.value + " --> ");
-            temporaryNode = temporaryNode.next;
+        while (temporaryNodeLinkedList.next != null){
+            System.out.print(temporaryNodeLinkedList.value + " --> ");
+            temporaryNodeLinkedList = temporaryNodeLinkedList.next;
         }
-        System.out.println(temporaryNode.value);
+        System.out.println(temporaryNodeLinkedList.value);
     }
 
     // -----  ------  -----  ------  -----  ------  -----  ------  -----  ------  -----  ------
